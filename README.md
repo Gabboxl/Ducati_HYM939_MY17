@@ -24,7 +24,7 @@ I found a firmware on the internet, but later I discovered that it was corrupted
 
 UDS is locked, so we have to find a lower-level way to read the firmware.
 
-The SoC of the IAW 7SM is a ST10F296(x), so I downloaded its datasheet and studied it. The microcontroller has a BSL (BootStrap Loader) mode, which permits us to load a little (32kB) piece of program before code execution of our choice... What if that code read the entire flash of the SoC? Actually, some programs already do this for us, like ST10Flasher. So I won't spend time writing machine code for that startup program, and I will use that tool (linked at the bottom).
+The SoC of the IAW 7SM is a ST10F296(x), so I downloaded its datasheet and studied it. The microcontroller has a BSL (BootStrap Loader) mode, which permits us to load a little (32kB) piece of program before code execution of our choice via the ASC0 interface (connected to K-line/UART)... What if that code read the entire flash of the SoC? Actually, some programs already do this for us, like ST10Flasher. So I won't spend time writing machine code for that startup program, and I will use that tool (linked at the bottom).
 
 So, to read the flash we have to enable that BSL mode. To enable it, we need to pull down the P0L.4 pin so that it samples low on the RESET of the controller.
 To do that, we have to open the ECU.
